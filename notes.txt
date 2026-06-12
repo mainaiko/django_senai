@@ -1,0 +1,66 @@
+MVC = model(banco de dados) view(telas) controler (regras de negocio)
+
+django usa o MVT = model (banco de dados) view (regras de negocio) templates (telas)
+________________________________________________________________________________________
+
+faça um codigo esperando o erro
+
+________________________________________________________________________________________
+utilizando o XAMPP para criar um servidor web local no seu computador no caso do projeto o MySQL
+MySQL Workbench para criar o banco
+
+site conectionstrings tem todas as conexoes como o mysql entre outros
+site dontpade para compartilhar arquivos de texto de forma simples
+
+django funciona bem com bancos relacionais
+
+obs: assim que ocorrer um erro ir testando por partes ate achar
+
+framework é como uma biblioteca so que mais avançada
+
+super usuario é aquele que comanda (obs nao esquecer a senha)
+com o superuser criado entrar no site e adicionar uma /admin
+ira abrir uma tela com usuario e senha
+
+dotenv  serve para manipular o arquivo .env que guarda a secret key
+boa pratica = criar um arquivo .env e no settigs criar um ponto de coneção
+
+________________________________________________________________________________________
+migrations = criar versoes do mesmo banco (usado em aplicações criticas)
+formas normais?
+ir de fomas normais para formas desnormalizadas e voltando para as formas normais
+bom para eventos
+
+migrations é uma missao critica
+________________________________________________________________________________________
+comandos:
+
+rodar servidor = python manage.py runserver
+
+migration = obrigatorio
+migrations = versionamento de banco de dados
+python manage.py makemigrations motorartigos (makemigrations faz a preparação para todas as tabelas gerando o migrations sem gerar a tabela realmente)
+python manage.py migrate motorartigos (migration faz a tabela "constroi")
+
+python manage.py makemigrations motorartigos
+(faz o migrations no admin ou seja no geral)
+
+
+SQL:
+
+CREATE DATABASE djangoartigos;
+(cria o banco de um app especifico)
+
+USE djangoartigos; 
+SHOW tables;
+(use o banco djangoartigos e mostre as tabelas)
+
+python manage.py createsuperuser
+nome - django
+email - django@gmail.com
+senha - django
+(cria o super usuario)
+
+python django>pip install python-dotenv
+
+
