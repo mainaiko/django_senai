@@ -25,6 +25,16 @@ ira abrir uma tela com usuario e senha
 dotenv  serve para manipular o arquivo .env que guarda a secret key
 boa pratica = criar um arquivo .env e no settigs criar um ponto de coneção
 
+templates = html, css -> o front end
+
+mtv
+models -> (classes de entidade)
+templates -> (front-end)
+views -> 
+
+http -> hyper text protocol
+
+
 ________________________________________________________________________________________
 migrations = criar versoes do mesmo banco (usado em aplicações criticas)
 formas normais?
