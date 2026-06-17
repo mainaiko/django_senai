@@ -73,4 +73,4 @@ senha - django
 
 python django>pip install python-dotenv
 
-
+python manage.py collectstatic -> 
