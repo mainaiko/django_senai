@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DjangoDF</title> 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- nome do sistema -->
+</head>
+<body>
+    <h1>Temas</h1>
+    <ul>
+        <li>fundamentos python</li>
+        <li>fundamentos redes</li>
+        <li>fundamentos nuvem</li>
+        <li>fundamentos IA</li>
+        <li>fundamentos Data Science</li>
+        <li>fundamentos Django</li>
+    </ul>
+    <h1>Django DF</h1>
+    <h5>Projeto de comunidade django Distrito Federal</h5>
+    {% block content %}
+
+    {% endblock %}
+
+</body>
+</html>

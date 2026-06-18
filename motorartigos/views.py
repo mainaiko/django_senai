@@ -4,7 +4,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
-# caminhos / rotas
 # regras de negocio
 
 # def index(request):
@@ -12,3 +11,6 @@ from django.http import HttpResponse
 
 def index(request):
     return render(request, "motorartigos/index.html")
+
+def artigo(request):
+    return render(request, 'motorartigos/artigo.html')
