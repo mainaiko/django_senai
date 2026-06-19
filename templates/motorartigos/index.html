@@ -12,4 +12,22 @@
     <img src="{% static 'img/logo-django.png' %}" alt="logo do chat gpt">
     <img src="{% static 'img/logo-gemini.png' %}" alt="logo do chat gpt">
     <img src="{% static 'img/logo-maritaca.png' %}" alt="logo do chat gpt">
+
+    <h1>Autores Cadastrados</h1>
+
+    <ul>
+        {% for autor in autores %}
+            <li>
+                <strong>ID do autor</strong>{{chave}} <br>
+                <strong>nome:</strong> {{autor.nome}} <br>
+                <strong>biografia:</strong> {{autor.biografia}} <br>
+                <strong>email:</strong> {{autor.email}}
+            </li>
+            <hr>
+        {% empty %}
+            <p>Nehum autor encontrado.</p>
+        {% endfor %}
+
+    </ul>
+        
 {% endblock %}
