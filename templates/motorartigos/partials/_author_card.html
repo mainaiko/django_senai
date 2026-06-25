@@ -1,0 +1,14 @@
+{% load static %}
+
+<div class="author-card-large">
+    <div class="author-avatar-lg">
+        {{ artigo.autor.nome|slice:":1" }}
+    </div>
+    <div>
+        <h4 class="mb-1">Escrito por: {{ artigo.autor.nome }}</h4>
+        <p class="text-muted mb-2">{{ artigo.autor.biografia|default:"Especialista e criador de conteúdos." }}</p>
+        <a href="mailto:{{ artigo.autor.email }}" class="author-contact-btn">
+            <i class="bi bi-envelope"></i> Entrar em contacto
+        </a>
+    </div>
+</div>

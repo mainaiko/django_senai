@@ -3,6 +3,8 @@ from django.shortcuts import render
 #import de um modulo hhtp do django de envio HTTP
 from django.http import HttpResponse
 from motorartigos.models import Autor
+from django.shortcuts import render, get_object_or_404
+from .models import Artigo
 
 # Create your views here.
 # regras de negocio
@@ -32,4 +34,8 @@ def index(request):
 
 def artigo(request):
     return render(request, 'motorartigos/artigo.html')
+
+def detalhe_artigo(request, slug):
+    artigo = get_object_or_404(Artigo, slug=slug)
+    return render(request, 'motorartigos/artigo.html', {'artigo': artigo})
 

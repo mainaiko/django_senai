@@ -2,5 +2,31 @@
 {% load static %}
 
 {% block content %}
-    <h1>Aqui é lorens</h1>
+<main class="container my-5 fade-in">
+    <a href="javascript:history.back()" class="btn-back">
+        <i class="bi bi-arrow-left"></i> Voltar
+    </a>
+
+    <article class="detail-view" style="display: block;">
+        <div class="detail-header-meta">
+            <span class="detail-axis-badge">{{ artigo.categoria }}</span>
+            <span class="text-muted"><i class="bi bi-calendar3"></i> {{ artigo.data_publicacao|date:"d/m/Y" }}</span>
+        </div>
+
+        <h1 class="detail-title">{{ artigo.titulo }}</h1>
+
+        {% if artigo.imagem %}
+        <div class="detail-hero-wrapper">
+            <img src="{{ artigo.imagem.url }}" alt="{{ artigo.titulo }}" class="detail-hero-img">
+        </div>
+        {% endif %}
+
+        <div class="detail-content-area">
+            {{ artigo.conteudo|safe }}
+        </div>
+
+        {% include 'motorartigos/partials/_author_card.html' %}
+        
+    </article>
+</main>
 {% endblock %}
