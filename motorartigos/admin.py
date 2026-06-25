@@ -1,24 +1,26 @@
 from django.contrib import admin
-from .models import Autor, EixoTecnologia # import de dados
-
+from tinymce.widgets import TinyMCE
+from django.db import models as db_models
+from .models import Autor, EixoTecnologia, Artigo
 # Register your models here.
 # personalização e administração da interface adm nativa do django
 # designer e configurador
 
+@admin.register(Autor)
 class AutorAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nome', 'email')
+    search_fields = ('nome', 'email')
 
-    # campos
-    list_display = ("nome", "biografia", "email")
-    # 
-    search_fields = ("numero",)
-
-admin.site.register(Autor, AutorAdmin)
-
+@admin.register(EixoTecnologia)
 class EixoTecnologiaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nome')
+    search_fields = ('nome',)
 
-    # campos
-    list_display = ("nome",)
-    # 
-    search_fields = ("numero",)
-
-admin.site.register(EixoTecnologia, EixoTecnologiaAdmin)
+@admin.register(Artigo)
+class ArtigoAdmin(admin.ModelAdmin):
+    list_display = ('id', 'id_fk_autor', 'id_fk_eixo', 'data_publicacao')
+    search_fields = ('id_fk_autor__nome',)
+    list_filter = ('id_fk_eixo', 'data_publicacao')
+    formfield_overrides = {
+        db_models.TextField: {'widget': TinyMCE()},  # 👉 garante o editor
+    }

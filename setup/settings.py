@@ -30,6 +30,21 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+TINYMCE_DEFAULT_CONFIG = {
+    'height': 500,
+    'menubar': True,
+    'plugins': [
+        'advlist autolink lists link image charmap preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table paste code wordcount'
+    ],
+    'toolbar': (
+        'undo redo | formatselect | bold italic underline strikethrough | '
+        'alignleft aligncenter alignright alignjustify | '
+        'bullist numlist outdent indent | link image | '
+        'forecolor backcolor | code fullscreen'
+    ),
+}
 
 # Application definition
 # local de instalação de apps
@@ -42,6 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'motorartigos',
     'chatbot',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
