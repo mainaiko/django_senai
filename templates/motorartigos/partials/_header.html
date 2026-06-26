@@ -18,9 +18,10 @@
 </header>
 
 <section class="container mb-5">
-    <div class="search-box p-3 rounded d-flex align-items-center">
-        <span class="text-secondary me-2">🔍</span>
-        <input type="text" class="form-control bg-transparent border-0 text-white shadow-none" placeholder="Pesquisar artigos por título, autor ou tecnologia (ex: javascript, n8n, dados)...">
+    <!-- Barra de Pesquisa Baseada no Layout Alura -->
+    <div class="search-wrapper">
+        <i class="bi bi-search search-icon"></i>
+        <input type="text" id="article-search" class="search-input" placeholder="Pesquisar artigos por título, autor ou tecnologia (ex: javascript, n8n, dados)..." oninput="app.handleSearch(this.value)">
     </div>
 </section>
 
