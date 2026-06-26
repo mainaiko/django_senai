@@ -7,7 +7,7 @@ from motorartigos.views import index, artigo
 # arquivo de rotas do app motorartigos
 
 urlpatterns = [
-    path("", index),
+    path('', index, name="index"),
     path("artigo/", artigo, name="artigo") # vantagem de colocar o name é a facilidade de nomear
 ]
 

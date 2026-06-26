@@ -1,17 +1,39 @@
 {% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevBlog Django - Tecnologia & Design</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Google Fonts para excelente tipografia -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="{% static 'css/style_index.css' %}">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
+
+<nav class="custom-navbar">
+    <div class="container d-flex justify-content-between align-items-center">
+      <a class="navbar-brand brand-logo" href="javascript:void(0)" onclick="router.goHome()">
+        <i class="bi bi-journal-code" style="color: var(--primary-accent);"></i>
+        <span>DevBlog</span>Django
+      </a>
+      <span class="badge bg-dark border border-secondary text-secondary py-2 px-3 rounded-pill d-none d-sm-inline-block">
+        Mapeamento de Modelos Django Ativo
+      </span>
+    </div>
+  </nav>
+
+<header class="container my-4 text-secondary">
+    <p class="fs-5 max-w-text">Descubra artigos profundos criados por especialistas e líderes de transformação. Filtre pelo seu eixo ou procure termos de interesse.</p>
+</header>
+
+<section class="container mb-5">
+    <div class="search-box p-3 rounded d-flex align-items-center">
+        <span class="text-secondary me-2">🔍</span>
+        <input type="text" class="form-control bg-transparent border-0 text-white shadow-none" placeholder="Pesquisar artigos por título, autor ou tecnologia (ex: javascript, n8n, dados)...">
+    </div>
+</section>
+
+<section class="container mb-5">
+    <h5 class="text-white fw-bold mb-3">Eixos de Tecnologia</h5>
+    <div class="d-flex flex-wrap gap-2">
+        <a href="{% url 'index' %}" class="btn btn-filter active">Todos os artigos</a> 
+        <a href="#" class="btn btn-filter">Mobile</a>
+        <a href="#" class="btn btn-filter">Programação</a>
+        <a href="#" class="btn btn-filter">Front-end</a>
+        <a href="#" class="btn btn-filter">DevOps</a>
+        <a href="#" class="btn btn-filter">UX & Design</a>
+        <a href="#" class="btn btn-filter">Data Science</a>
+        <a href="#" class="btn btn-filter">Inteligência Artificial</a>
+    </div>
+</section>
