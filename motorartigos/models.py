@@ -39,6 +39,26 @@ class EixoTecnologia(models.Model):
     #     tb_name = "eixo"
 
 class Artigo(models.Model):
+    titulo = models.CharField(
+        max_length=200,
+        verbose_name='Título',
+        default='Sem titulo',
+        )
+    foto = models.ImageField(upload_to="fotos/%Y/%m/%d", blank=True)
+    publicada = models.BooleanField(default=False)
+    TAG_NIVEL =[
+        ("B", "Básico"),
+        ("I", "Intermediario"),
+        ("A", "Avançado")
+    ]
+
+    nivel = models.CharField(
+        max_length=1,
+        choices=TAG_NIVEL,
+        default='B',
+        verbose_name='Nível',
+    )
+
     texto = HTMLField()
     data_publicacao = models.DateTimeField(auto_now_add=True)
     

@@ -2,469 +2,107 @@
 {% load static %}
 
 {% block content %}
-  <!-- VISTA 1: HOME (Página Principal com Grelha de Artigos) -->
-  <main id="home-view" class="container py-4 fade-in">
-    
-    <!-- Hero / Boas-vindas -->
-    <div class="row align-items-center mb-5 mt-3">
-      <div class="col-lg-8">
-        <h1 class="fw-extrabold display-5 mb-3" style="letter-spacing: -1.5px; font-weight: 800;">
-          Conteúdos que impactam o mercado de <span style="color: var(--primary-accent);">tecnologia</span>.
-        </h1>
-        <p class="text-secondary fs-5" style="max-width: 650px;">
-          Descubra artigos profundos criados por especialistas e líderes de transformação. Filtre pelo seu eixo ou procure termos de interesse.
-        </p>
-      </div>
-    </div>
-
-    <!-- Filtros de Tecnologia (Eixos de Tecnologia) -->
+<section class="container mb-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h3 class="section-title">Eixos de Tecnologia</h3>
-    </div>
-    <div class="filter-pills" id="eixo-filters">
-      <!-- Injetado dinamicamente via JS -->
-    </div>
-
-    <!-- Carrossel de Destaques: Mais Recentes -->
-    <div class="d-flex justify-content-between align-items-center mb-3 mt-4">
-      <h3 class="section-title">Mais recentes</h3>
-      <div class="d-flex gap-2">
-        <button class="slider-control-btn" onclick="app.scrollSlider('prev')" aria-label="Anterior">
-          <i class="bi bi-chevron-left"></i>
-        </button>
-        <button class="slider-control-btn" onclick="app.scrollSlider('next')" aria-label="Seguinte">
-          <i class="bi bi-chevron-right"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Slider Horizontal -->
-    <div class="horizontal-slider" id="recent-slider">
-      <!-- Injetado via JS -->
-    </div>
-
-    <!-- Seção de Grelha Completa -->
-    <div class="d-flex justify-content-between align-items-center mb-4 mt-5">
-      <h3 class="section-title" id="grid-title">Todos os Artigos</h3>
-    </div>
-    
-    <div class="row g-4" id="articles-grid">
-      <!-- Injetado via JS -->
-    </div>
-
-  </main>
-
-
-  <!-- VISTA 2: DETALHE DO ARTIGO (Página de Leitura Dinâmica) -->
-  <main id="detail-view" class="detail-view container fade-in">
-    <div class="row justify-content-center">
-      <div class="col-lg-9">
-        
-        <!-- Botão Voltar -->
-        <a href="javascript:void(0)" onclick="router.goHome()" class="btn-back">
-          <i class="bi bi-arrow-left"></i> Voltar ao início
-        </a>
-
-        <!-- Informações do cabeçalho -->
-        <div class="detail-header-meta">
-          <span class="detail-axis-badge" id="detail-axis-label">Data Science</span>
-          <span id="detail-level-badge" class="badge-level position-static">Básico</span>
-          <div class="text-secondary d-flex align-items-center gap-2 font-monospace fs-7">
-            <i class="bi bi-calendar-event"></i>
-            <span id="detail-date">Publicado há 1 dia</span>
-          </div>
+        <h4 class="text-white fw-bold m-0">Mais recentes</h4>
+        <div>
+            <button class="btn btn-nav me-1">‹</button>
+            <button class="btn btn-nav">›</button>
         </div>
-
-        <!-- Título do Artigo -->
-        <h1 class="detail-title" id="detail-title-text">Modelo preditivo: o guia completo para começar do zero</h1>
-
-        <!-- Imagem de Destaque Ampla -->
-        <div class="detail-hero-wrapper">
-          <img src="" id="detail-image" alt="Imagem do Artigo" class="detail-hero-img">
-        </div>
-
-        <!-- Conteúdo do Artigo (Mapeia o HTMLField do tinymce do Django) -->
-        <article class="detail-content-area text-slate-100" id="detail-body-text">
-          <!-- Injetado via JS -->
-        </article>
-
-        <!-- Cartão do Autor (Relação de Django ForeignKey) -->
-        <div class="author-card-large">
-          <div class="author-avatar-lg" id="author-lg-avatar">AC</div>
-          <div>
-            <span class="text-secondary text-uppercase font-monospace fw-bold fs-7">Escrito por</span>
-            <h4 class="mt-1 mb-2 fw-bold text-white" id="author-lg-name">Ana Costa</h4>
-            <p class="text-secondary mb-2" id="author-lg-bio">Cientista de Dados especialista em Engenharia de Feature e Aprendizagem Supervisionada com mais de 8 anos de experiência no ecossistema.</p>
-            <a href="" id="author-lg-email" class="author-contact-btn">
-              <i class="bi bi-envelope"></i> Contactar Autor
-            </a>
-          </div>
-        </div>
-
-        <!-- Recomendados adicionais -->
-        <div class="mt-5 pt-4 border-top border-secondary">
-          <h4 class="fw-bold mb-4">Outros artigos que poderá gostar</h4>
-          <div class="row g-4" id="recommended-grid">
-            <!-- Injetado via JS -->
-          </div>
-        </div>
-
-      </div>
     </div>
-  </main>
 
-
-  <!-- Rodapé Premium -->
-  <footer class="custom-footer">
-    <div class="container text-center">
-      <p class="mb-2 text-white">DevBlog Django</p>
-      <p class="small mb-0">Template Gerado no Canvas Gemini para Testes e Exercícios</p>
-    </div>
-  </footer>
-
-
-  <!-- JS Core Logic, Dados Simulados e Navegador SPA -->
-  <script>
-    // Mock robusto que simula a arquitetura de banco de dados do Django Django (Eixo, Autor, Artigo)
-    const db = {
-      eixos: [
-        { id: 1, nome: "Todos os artigos" },
-        { id: 2, nome: "Mobile" },
-        { id: 3, nome: "Programação" },
-        { id: 4, nome: "Front-end" },
-        { id: 5, nome: "DevOps" },
-        { id: 6, nome: "UX & Design" },
-        { id: 7, nome: "Data Science" },
-        { id: 8, nome: "Inteligência Artificial" }
-      ],
-      autores: {
-        1: { nome: "Ana Costa", biografia: "Cientista de Dados especialista em Machine Learning e Inteligência Artificial na nuvem.", email: "ana.costa@alura.com.pt" },
-        2: { nome: "João Silva", biografia: "Especialista em Gestão de Talento, DevOps e transformação ágil de equipas tecnológicas.", email: "joao.silva@alura.com.pt" },
-        3: { nome: "Pedro Santos", biografia: "Engenheiro Frontend focado em UI responsiva, design modular e arquitetura moderna.", email: "pedro.santos@alura.com.pt" }
-      },
-      artigos: [
-        {
-          id: 1,
-          titulo: "Agente de IA integrado com Google Sheets no n8n",
-          nivel: "A", // Avançado
-          texto: `
-            <p>Os agentes de inteligência artificial estão a redefinir a automação moderna. Neste artigo técnico, exploramos como pode desenhar e orquestrar um fluxo de trabalho autônomo completo utilizando o <strong>n8n</strong> para capturar, estruturar e validar dados de folhas de cálculo do Google Sheets sem intervenção manual contínua.</p>
-            <h3>Porque integrar agentes de IA na folha de cálculo?</h3>
-            <p>O Google Sheets serve frequentemente como repositório de dados inicial para equipas de marketing, suporte e vendas. Quando integramos modelos de linguagem (LLMs) via n8n, ganhamos a habilidade de analisar o tom de emails, categorizar de forma lógica e automatizar respostas personalizadas em milissegundos.</p>
-            <h3>Passo a passo da arquitetura</h3>
-            <p>Primeiro, configuramos o webhook para ler as novas linhas registadas na folha de cálculo. Em seguida, injetamos essa informação no nó da OpenAI no n8n estruturando um sistema de prompt contextualizado para que a resposta seja focada no escopo do negócio.</p>
-          `,
-          data_publicacao_texto: "Ontem",
-          data_publicacao_timestamp: 1, // mais recente
-          id_fk_eixo: 8, // IA
-          id_fk_autor: 1,
-          imagem_capa: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-          id: 2,
-          titulo: "Como passar pela IA em processos seletivos em 2026",
-          nivel: "I", // Intermediário
-          texto: `
-            <p>Com o avanço dos sistemas ATS (Applicant Tracking Systems) potenciados por inteligência artificial, muitos perfis qualificados acabam descartados no primeiro estágio. Descubra as técnicas cruciais para otimizar o seu portfólio e currículo técnico para leitura de algoritmos.</p>
-            <h3>O que procuram os algoritmos de recrutamento?</h3>
-            <p>Diferente de uma avaliação humana imediata, o robô procura correspondência de semântica e tokens de linguagens específicas configurados para a vaga. Usar a correta formatação no PDF e evitar tabelas flutuantes complexas é essencial.</p>
-          `,
-          data_publicacao_texto: "Há 2 dias",
-          data_publicacao_timestamp: 2,
-          id_fk_eixo: 3, // Programação
-          id_fk_autor: 2,
-          imagem_capa: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-          id: 3,
-          titulo: "Modelo preditivo: o guia completo para começar do zero",
-          nivel: "B", // Básico
-          texto: `
-            <p>Seja bem-vindo ao mundo da inteligência analítica. Se sempre quis entender o que está por trás de sistemas que prevêem vendas ou estimam preços de habitação, este guia prático de análise de regressão foi desenhado precisamente para si.</p>
-            <h3>Importância da Engenharia de Variáveis</h3>
-            <p>No desenvolvimento de modelos preditivos, a limpeza e a transformação dos dados iniciais representam mais de 70% do sucesso total. Vamos aprender a utilizar o Pandas para preencher dados ausentes de forma estatisticamente saudável.</p>
-          `,
-          data_publicacao_texto: "Há 7 dias",
-          data_publicacao_timestamp: 7,
-          id_fk_eixo: 7, // Data Science
-          id_fk_autor: 1,
-          imagem_capa: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-          id: 4,
-          titulo: "Arquitetando Aplicações Escaláveis com Docker e Kubernetes",
-          nivel: "A", // Avançado
-          texto: `
-            <p>Garantir que um ecossistema se mantém estável sob picos repentinos de acessos exige robustez na orquestração de microsserviços. Neste artigo avançado de DevOps, analisamos estratégias de balanceamento de carga.</p>
-            <h3>Pods de Alta Disponibilidade</h3>
-            <p>Vamos discutir configurações críticas do deployment do Kubernetes, como o HPA (Horizontal Pod Autoscaler) e monitorização de consumo de memória RAM do sistema.</p>
-          `,
-          data_publicacao_texto: "Há 10 dias",
-          data_publicacao_timestamp: 10,
-          id_fk_eixo: 5, // DevOps
-          id_fk_autor: 2,
-          imagem_capa: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80"
-        },
-        {
-          id: 5,
-          titulo: "Design Systems no Figma: Otimize Componentes Reutilizáveis",
-          nivel: "I", // Intermédio
-          texto: `
-            <p>Economize centenas de horas de desenvolvimento alinhando engenharia e produto de design. Conheça as melhores abordagens para gerir variantes de componentes, tokens e modos de tema escuro sem atrito.</p>
-          `,
-          data_publicacao_texto: "Há 14 dias",
-          data_publicacao_timestamp: 14,
-          id_fk_eixo: 6, // UX & Design
-          id_fk_autor: 3,
-          imagem_capa: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80"
-        }
-      ]
-    };
-
-    // Estado da aplicação
-    let selectedEixoId = 1; // "Todos os artigos"
-    let searchQuery = "";
-
-    // Router do SPA simples e performante
-    const router = {
-      goHome: function() {
-        document.getElementById('detail-view').style.display = 'none';
-        document.getElementById('home-view').style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        // Limpar URL hash para evitar confusão
-        history.replaceState(null, null, ' ');
-      },
-      goDetail: function(articleId) {
-        const artigo = db.artigos.find(a => a.id === parseInt(articleId));
-        if (!artigo) return;
-
-        // Preencher dados do artigo
-        document.getElementById('detail-title-text').innerText = artigo.titulo;
-        document.getElementById('detail-image').src = artigo.imagem_capa;
-        document.getElementById('detail-body-text').innerHTML = artigo.texto;
-        
-        // Eixo e Autor vinculados por Django ForeignKey
-        const eixoObj = db.eixos.find(e => e.id === artigo.id_fk_eixo);
-        document.getElementById('detail-axis-label').innerText = eixoObj ? eixoObj.nome : 'Geral';
-        
-        const autorObj = db.autores[artigo.id_fk_autor];
-        document.getElementById('author-lg-name').innerText = autorObj.nome;
-        document.getElementById('author-lg-bio').innerText = autorObj.biografia;
-        document.getElementById('author-lg-email').href = `mailto:${autorObj.email}`;
-        
-        // Iniciais para o Avatar
-        const iniciais = autorObj.nome.split(' ').map(n => n[0]).join('');
-        document.getElementById('author-lg-avatar').innerText = iniciais;
-
-        // Configurar o distintivo de nível
-        const levelBadge = document.getElementById('detail-level-badge');
-        levelBadge.className = 'badge-level position-static';
-        if (artigo.nivel === 'B') {
-          levelBadge.innerText = 'Básico';
-          levelBadge.classList.add('level-b');
-        } else if (artigo.nivel === 'I') {
-          levelBadge.innerText = 'Intermédio';
-          levelBadge.classList.add('level-i');
-        } else if (artigo.nivel === 'A') {
-          levelBadge.innerText = 'Avançado';
-          levelBadge.classList.add('level-a');
-        }
-
-        document.getElementById('detail-date').innerText = `Publicado ${artigo.data_publicacao_texto}`;
-
-        // Renderizar recomendados
-        app.renderRecommended(artigo.id, artigo.id_fk_eixo);
-
-        // Alternar vistas
-        document.getElementById('home-view').style.display = 'none';
-        document.getElementById('detail-view').style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    };
-
-    // Aplicação Core
-    const app = {
-      init: function() {
-        this.renderEixos();
-        this.renderSlider();
-        this.renderGrid();
-      },
-
-      renderEixos: function() {
-        const filterContainer = document.getElementById('eixo-filters');
-        filterContainer.innerHTML = '';
-
-        db.eixos.forEach(eixo => {
-          const btn = document.createElement('button');
-          btn.className = `filter-btn ${eixo.id === selectedEixoId ? 'active' : ''}`;
-          btn.innerText = eixo.nome;
-          btn.onclick = () => this.selectEixo(eixo.id);
-          filterContainer.appendChild(btn);
-        });
-      },
-
-      selectEixo: function(eixoId) {
-        selectedEixoId = eixoId;
-        this.renderEixos();
-        this.renderGrid();
-        
-        // Atualizar título dinamicamente para contexto semântico
-        const gridTitle = document.getElementById('grid-title');
-        if (eixoId === 1) {
-          gridTitle.innerText = "Todos os Artigos";
-        } else {
-          const eixoObj = db.eixos.find(e => e.id === eixoId);
-          gridTitle.innerText = `Artigos em: ${eixoObj.nome}`;
-        }
-      },
-
-      handleSearch: function(value) {
-        searchQuery = value.toLowerCase().trim();
-        this.renderGrid();
-      },
-
-      // Filtragem por Eixo e termo de pesquisa
-      getFilteredArticles: function() {
-        return db.artigos.filter(artigo => {
-          // Filtragem de eixo (id 1 = todos)
-          const matchesEixo = (selectedEixoId === 1 || artigo.id_fk_eixo === selectedEixoId);
-          
-          // Busca textual avançada
-          const autorObj = db.autores[artigo.id_fk_autor];
-          const matchesSearch = !searchQuery || 
-                                artigo.titulo.toLowerCase().includes(searchQuery) ||
-                                artigo.texto.toLowerCase().includes(searchQuery) ||
-                                (autorObj && autorObj.nome.toLowerCase().includes(searchQuery));
-          
-          return matchesEixo && matchesSearch;
-        });
-      },
-
-      // Criação de Card de Artigo Reutilizável
-      createCardHtml: function(artigo) {
-        const autorObj = db.autores[artigo.id_fk_autor] || { nome: 'Autor Desconhecido' };
-        const iniciais = autorObj.nome.split(' ').map(n => n[0]).join('');
-        
-        // Determinar o texto legível e classe de badge
-        let levelText = 'Básico';
-        let levelClass = 'level-b';
-        if (artigo.nivel === 'I') { levelText = 'Intermédio'; levelClass = 'level-i'; }
-        if (artigo.nivel === 'A') { levelText = 'Avançado'; levelClass = 'level-a'; }
-
-        return `
-          <div class="article-card" onclick="router.goDetail(${artigo.id})">
-            <div class="card-img-wrapper">
-              <img src="${artigo.imagem_capa}" alt="${artigo.titulo}" class="card-img-custom">
-              <span class="badge-level ${levelClass}">${levelText}</span>
-            </div>
-            <div class="card-body-custom">
-              <div class="card-meta">
-                <span><i class="bi bi-clock"></i> ${artigo.data_publicacao_texto}</span>
-              </div>
-              <h4 class="card-title-custom">${artigo.titulo}</h4>
-              <p class="card-preview-text">
-                ${artigo.texto.replace(/<[^>]*>/g, '').substring(0, 100)}...
-              </p>
-              <div class="card-footer-custom">
-                <div class="author-info">
-                  <div class="author-avatar-sm">${iniciais}</div>
-                  <span class="author-name-sm">${autorObj.nome}</span>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 flex-nowrap overflow-hidden">
+        {% for artigo in artigos_recentes %}
+        <div class="col">
+            <a href="{% url 'artigo' artigo.id %}" class="text-decoration-none">
+                <div class="card card-custom h-100 border-0">
+                    <div class="position-relative">
+                        
+                        {% if artigo.foto %}
+                            <div class="card-img-top" style="background-image: url('{{ artigo.foto.url }}'); background-size: cover; background-position: center; height: 160px;"></div>
+                        {% else %}
+                            <div class="card-img-top thumb-gradient" style="height: 160px;"></div>
+                        {% endif %}
+                        
+                        {% if artigo.nivel == 'A' %}
+                            <span class="badge position-absolute top-0 end-0 m-3 bg-danger-custom">{{ artigo.get_nivel_display|upper }}</span>
+                        {% elif artigo.nivel == 'I' %}
+                            <span class="badge position-absolute top-0 end-0 m-3 bg-warning-custom text-dark">{{ artigo.get_nivel_display|upper }}</span>
+                        {% else %}
+                            <span class="badge position-absolute top-0 end-0 m-3 bg-success-custom">{{ artigo.get_nivel_display|upper }}</span>
+                        {% endif %}
+                        
+                    </div>
+                    
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <small class="text-secondary d-block mb-2">🕒 Há {{ artigo.data_publicacao|timesince }}</small>
+                            <h5 class="card-title text-white fw-bold fs-6">{{ artigo.titulo }}</h5>
+                            <p class="card-text text-secondary small">{{ artigo.texto|striptags|truncatechars:85 }}</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-dark-light">
+                            <span class="small text-dark">
+                            <span class="me-1 fw-bold text-primary">{{ artigo.nivel }}</span> 
+                            {{ artigo.id_fk_autor.nome }}
+                            </span>
+                            <span class="text-primary-custom small fw-bold">Ler mais →</span>
+                        </div>
+                    </div>
                 </div>
-                <span class="read-more-link">
-                  Ler mais <i class="bi bi-arrow-right"></i>
-                </span>
-              </div>
-            </div>
-          </div>
-        `;
-      },
+            </a>
+        </div>
+        {% empty %}
+            <p class="text-secondary">Nenhum artigo publicado recentemente.</p>
+        {% endfor %}
+    </div>
+</section>
 
-      // Renderiza Destaques Recentes (Mapeamento Horizontal)
-      renderSlider: function() {
-        const slider = document.getElementById('recent-slider');
-        slider.innerHTML = '';
-        
-        // Ordenar por ordem cronológica (pelo timestamp simulado mais antigo/recente)
-        const sorted = [...db.artigos].sort((a,b) => a.data_publicacao_timestamp - b.data_publicacao_timestamp);
-        
-        sorted.slice(0, 4).forEach(artigo => {
-          const col = document.createElement('div');
-          col.className = 'col-card';
-          col.innerHTML = this.createCardHtml(artigo);
-          slider.appendChild(col);
-        });
-      },
+<section class="container mb-5">
+    <h4 class="text-white fw-bold mb-4">Todos os Artigos</h4>
 
-      scrollSlider: function(direction) {
-        const slider = document.getElementById('recent-slider');
-        const scrollAmount = 350;
-        if(direction === 'prev') {
-          slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        } else {
-          slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-      },
+    <div class="row g-4">
+        {% for artigo in todos_artigos %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <a href="{% url 'artigo' artigo.id %}" class="text-decoration-none">
+                <div class="card card-custom h-100 border-0">
+                    <div class="position-relative">
+                        
+                        {% if artigo.foto %}
+                            <div class="card-img-top" style="background-image: url('{{ artigo.foto.url }}'); background-size: cover; background-position: center; height: 160px;"></div>
+                        {% else %}
+                            <div class="card-img-top thumb-gradient" style="height: 160px;"></div>
+                        {% endif %}
 
-      // Grelha principal de Artigos Filtráveis
-      renderGrid: function() {
-        const grid = document.getElementById('articles-grid');
-        grid.innerHTML = '';
-        
-        const filtered = this.getFilteredArticles();
-
-        if (filtered.length === 0) {
-          grid.innerHTML = `
-            <div class="col-12 text-center py-5">
-              <i class="bi bi-inbox-fill text-secondary fs-1 mb-3"></i>
-              <h5 class="text-secondary">Nenhum artigo encontrado para a pesquisa selecionada.</h5>
-              <button class="btn btn-outline-primary btn-sm mt-2" onclick="app.resetFilters()">Limpar filtros</button>
-            </div>
-          `;
-          return;
-        }
-
-        filtered.forEach(artigo => {
-          const col = document.createElement('div');
-          col.className = 'col-12 col-md-6 col-lg-4';
-          col.innerHTML = this.createCardHtml(artigo);
-          grid.appendChild(col);
-        });
-      },
-
-      // Sugestões recomendadas no rodapé do Detalhe
-      renderRecommended: function(currentId, eixoId) {
-        const recGrid = document.getElementById('recommended-grid');
-        recGrid.innerHTML = '';
-
-        // Procurar artigos no mesmo eixo, excluindo o atual
-        let recs = db.artigos.filter(a => a.id_fk_eixo === eixoId && a.id !== currentId);
-        
-        // Se houver poucos, preencher com os gerais
-        if (recs.length < 3) {
-          const extras = db.artigos.filter(a => a.id !== currentId && !recs.includes(a));
-          recs = [...recs, ...extras];
-        }
-
-        recs.slice(0, 3).forEach(artigo => {
-          const col = document.createElement('div');
-          col.className = 'col-12 col-md-4';
-          col.innerHTML = this.createCardHtml(artigo);
-          recGrid.appendChild(col);
-        });
-      },
-
-      resetFilters: function() {
-        document.getElementById('article-search').value = '';
-        searchQuery = '';
-        selectedEixoId = 1;
-        this.init();
-      }
-    };
-
-    // Executar ao carregar a página
-    window.onload = function() {
-      app.init();
-    };
-  </script>
+                        {% if artigo.nivel == 'A' %}
+                            <span class="badge position-absolute top-0 end-0 m-3 bg-danger-custom">{{ artigo.get_nivel_display|upper }}</span>
+                        {% elif artigo.nivel == 'I' %}
+                            <span class="badge position-absolute top-0 end-0 m-3 bg-warning-custom text-dark">{{ artigo.get_nivel_display|upper }}</span>
+                        {% else %}
+                            <span class="badge position-absolute top-0 end-0 m-3 bg-success-custom">{{ artigo.get_nivel_display|upper }}</span>
+                        {% endif %}
+                        
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div>
+                            <small class="text-secondary d-block mb-2">🕒 Há {{ artigo.data_publicacao|timesince }}</small>
+                            <h5 class="card-title text-white fw-bold fs-6">{{ artigo.titulo }}</h5>
+                            <p class="card-text text-secondary small">{{ artigo.texto|striptags|truncatechars:85 }}</p>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top border-dark-light">
+                        <span class="small text-dark">
+                        <span class="me-1 fw-bold text-primary">{{ artigo.nivel }}</span> 
+                        {{ artigo.id_fk_autor.nome }}
+                        </span>
+                          <span class="text-primary-custom small fw-bold">Ler mais →</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+            <p class="text-secondary">Ainda não existem artigos publicados.</p>
+        {% endfor %}
+    </div>
+</section>
 
 {% endblock %}

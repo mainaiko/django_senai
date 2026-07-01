@@ -1,6 +1,5 @@
 from django.urls import path
 from motorartigos.views import index, artigo
-
 # boa pratica
 # rotas
 # cada pasta app com suas rotas
@@ -8,7 +7,8 @@ from motorartigos.views import index, artigo
 
 urlpatterns = [
     path('', index, name="index"),
-    path("artigo/", artigo, name="artigo") # vantagem de colocar o name é a facilidade de nomear
+    # O <int:id> avisa ao Django que um número (o ID do artigo) será passado na URL
+    path("artigo/<int:id>/", artigo, name="artigo") 
 ]
 
 

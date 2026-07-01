@@ -1,9 +1,8 @@
 {% load static %}
 
-
 <nav class="custom-navbar">
     <div class="container d-flex justify-content-between align-items-center">
-      <a class="navbar-brand brand-logo" href="javascript:void(0)" onclick="router.goHome()">
+      <a class="navbar-brand brand-logo" href="{% url 'index' %}">
         <i class="bi bi-journal-code" style="color: var(--primary-accent);"></i>
         <span>DevBlog</span>Django
       </a>
@@ -11,30 +10,43 @@
         Mapeamento de Modelos Django Ativo
       </span>
     </div>
-  </nav>
+</nav>
 
 <header class="container my-4 text-secondary">
     <p class="fs-5 max-w-text">Descubra artigos profundos criados por especialistas e líderes de transformação. Filtre pelo seu eixo ou procure termos de interesse.</p>
 </header>
 
 <section class="container mb-5">
-    <!-- Barra de Pesquisa Baseada no Layout Alura -->
-    <div class="search-wrapper">
+    <form method="GET" action="{% url 'index' %}" class="search-wrapper m-0">
         <i class="bi bi-search search-icon"></i>
-        <input type="text" id="article-search" class="search-input" placeholder="Pesquisar artigos por título, autor ou tecnologia (ex: javascript, n8n, dados)..." oninput="app.handleSearch(this.value)">
-    </div>
+        
+        <input type="text" name="q" id="article-search" class="search-input" 
+               placeholder="Pesquisar artigos por título ou texto (aperte Enter para buscar)..." 
+               value="{{ query_atual|default_if_none:'' }}">
+        
+        {% if eixo_atual %}
+            <input type="hidden" name="eixo" value="{{ eixo_atual }}">
+        {% endif %}
+        
+        </form>
 </section>
 
 <section class="container mb-5">
     <h5 class="text-white fw-bold mb-3">Eixos de Tecnologia</h5>
     <div class="d-flex flex-wrap gap-2">
-        <a href="{% url 'index' %}" class="btn btn-filter active">Todos os artigos</a> 
-        <a href="#" class="btn btn-filter">Mobile</a>
-        <a href="#" class="btn btn-filter">Programação</a>
-        <a href="#" class="btn btn-filter">Front-end</a>
-        <a href="#" class="btn btn-filter">DevOps</a>
-        <a href="#" class="btn btn-filter">UX & Design</a>
-        <a href="#" class="btn btn-filter">Data Science</a>
-        <a href="#" class="btn btn-filter">Inteligência Artificial</a>
+        
+        <a href="{% url 'index' %}" class="btn btn-filter {% if not eixo_atual %}active{% endif %}">
+            Todos os artigos
+        </a> 
+        
+        {% for eixo in eixos %}
+            <a href="?eixo={{ eixo.id }}{% if query_atual %}&q={{ query_atual }}{% endif %}" 
+               class="btn btn-filter {% if eixo_atual == eixo.id %}active{% endif %}">
+                {{ eixo.nome }}
+            </a>
+        {% endfor %}
+        
     </div>
 </section>
+
+

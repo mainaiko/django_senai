@@ -1,0 +1,9 @@
+asgiref==3.11.1
+Django==4.1.13
+django-tinymce==4.1.0
+mysqlclient==2.2.8
+pillow==12.3.0
+python-dotenv==1.2.2
+sqlparse==0.5.5
+typing_extensions==4.15.0
+tzdata==2026.2
